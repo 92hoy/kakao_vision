@@ -1,14 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import { Provider } from "react-redux";
 import App from "./App";
+import configureStore from "./store/configureStore";
+// import { createStore } from "redux";
+// import createHistory from "history/createBrowserHistory";
+import { createBrowserHistory } from "history";
+import { Router, Route } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 // import { button } from "@material-ui/core";
 
+const store = configureStore();
+// const store = createStore(reducers);
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <Router history={createBrowserHistory()}>
+      <Route path="/" component={App} />
+    </Router>
+  </Provider>,
   document.getElementById("root")
 );
 
