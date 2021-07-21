@@ -5,22 +5,20 @@ from django.utils import timezone
 
 
 class Moim(models.Model):
-    
-    author = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=200)
-    text = models.TextField()
-    date = models.DateTimeField()
-    thumbnail = models.ImageField(u'썸네일', 
-                        upload_to='%Y/%m/%d', blank=True, null=True)
-    join_users = models.ManyToManyField('auth.User', 
-                        verbose_name=u'참석', blank=True, 
-                        related_name='join_moim')
-    created_date = models.DateTimeField(default=timezone.now)
+    id = models.AutoField(primary_key=True, verbose_name='idx')
+    author = models.ForeignKey('auth.User',on_delete=models.CASCADE)
+    title = models.CharField(max_length=200,null=True, blank=True)
+    text = models.TextField(null=True, blank=True)
+    date = models.DateTimeField(null=True, blank=True)
+    thumbnail = models.ImageField(u'썸네일', upload_to='%Y/%m/%d', blank=True, null=True)
+    join_users = models.ManyToManyField('auth.User', verbose_name=u'참석', blank=True,
+                                        related_name='join_moim')
+    created_date = models.DateTimeField(
+            default=timezone.now)
 
     def __str__(self):
-        Moim.objects.filter(date__lte=timezone.now())\
-                    .order_by('created_date')
         return self.title
+
     
 class User(models.Model):
     id = models.AutoField(primary_key=True, verbose_name='idx')
@@ -34,7 +32,7 @@ class User(models.Model):
 
     class Meta:
         # abstract = True
-        # managed = False
+        managed = True
         db_table = 'user'
         # app_label = 'user'
         ordering = ['id', ]
@@ -53,7 +51,7 @@ class Session(models.Model):
 
     class Meta:
         # abstract = True
-        # managed = False
+        managed = True
         db_table = 'session'
         # app_label = 'session'
         ordering = ['id', ]

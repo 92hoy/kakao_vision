@@ -6,7 +6,7 @@ class MoimListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Moim
-        fields = ('id', 'author', 'title', 'text', 'created_date')
+        fields = ('author', 'title', 'text', 'created_date')
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

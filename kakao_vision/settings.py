@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'drf_yasg',
     'rest_framework',
     'corsheaders',
     'api',
@@ -115,7 +116,7 @@ if mysql == 'Y':
             'NAME': 'jhy',
             'USER': 'root',
             'PASSWORD': '0000',
-            'HOST': '0.0.0.0',
+            'HOST': 'localhost',
             'PORT': '3306',
         }
     }
