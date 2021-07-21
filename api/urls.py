@@ -1,15 +1,9 @@
 from django.conf.urls import url
+from .views import *
 
-from .views import MoimListView
 
 urlpatterns = [
-    url(r'^moim/$', MoimListView.as_view(), name='moim'),
+    url(r'^v1/moim/$', MoimListView.as_view(), name='moim'),
+    url(r'^v1/user$', UserView.as_view(), name='user'),
+    url(r'^v1/sign$', SignView.as_view(), name='sign'),
 ]
-
-
-
-# # from ba.views import MeetingView as MeetingView
-# urlpatterns = [
-#     url(r'^v1/user$', UserView.as_view()),
-#     url(r'^v1/sign$', SignView.as_view()),
-# ]
